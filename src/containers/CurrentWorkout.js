@@ -21,6 +21,12 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = (dispatch) => ({
   setModalVisibility(visible) {
     return dispatch(setExerciseModalVisibility(visible));
+  },
+  addExercise(exercise){
+    return dispatch(addExerciseToCurrentWorkout(exercise))
+  },
+  fetchCurrentWorkout(){
+    return dispatch(fetchCurrentWorkout());
   }
 });
 
@@ -31,6 +37,9 @@ class _CurrentWorkout extends Component {
     exercises: []
   }
 
+  componentDidMount(){
+    this.props.fetchCurrentWorkout();
+  }
 
   render(){
     return(
@@ -95,5 +104,8 @@ const styles = StyleSheet.create({
 
 export const CurrentWorkout = connect(
   mapStateToProps, 
-  {setModalVisibility:setExerciseModalVisibility,addExercise:addExercise})
-(_CurrentWorkout);
+  {
+    setModalVisibility:setExerciseModalVisibility,addExercise:addExerciseToCurrentWorkout,
+    fetchCurrentWorkout:fetchCurrentWorkout
+  }
+)(_CurrentWorkout);

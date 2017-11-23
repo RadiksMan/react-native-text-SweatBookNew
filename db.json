@@ -1,0 +1,13 @@
+{
+  "current_workout": [
+    {
+      "name": "inclince dumbbell bench press",
+      "category": {
+        "id": 4,
+        "name": "Chest",
+        "type": "Weight Training"
+      },
+      "id": 1
+    }
+  ]
+}

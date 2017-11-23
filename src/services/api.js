@@ -9,20 +9,21 @@ const checkStatus = (response) => {
   } else {
     const error = new Error(response.statusText)
     error.response = response;
-    throw error;
+    //throw error;
+    console.warn(error);
   }
 };
 
 const parseJSON = (response) => response.json();
 
 export const get = (path) => (
-  fetch(`http://localhost:3000/${path}`, { headers })
+  fetch(`http://192.168.1.17:3000/${path}`, { headers })
   .then(checkStatus)
   .then(parseJSON)
 );
 
 export const post = (path, data) => (
-  fetch(`http://localhost:3000/${path}`, {
+  fetch(`http://192.168.1.17:3000/${path}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(data)

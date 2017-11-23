@@ -6,6 +6,7 @@ export const createAsyncCreator = (startAction, endAction, asycnFn) => (
     const dispatchEndAction = createAction(endAction);
     return asycnFn(dispatch)
     .then(result => dispatch(dispatchEndAction(result)))
+    
     .catch(e => {
       console.error(e);
       dispatch(dispatchEndAction(e));

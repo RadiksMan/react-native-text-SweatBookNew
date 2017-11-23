@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { Topbar, ExerciseModal, WorkoutList } from '../ui';
 
 import { fetchCurrentWorkout, addExerciseToCurrentWorkout } from '../actions/actionCreators';
-import { setExerciseModalVisibility } from '../actions/actions';
+import { setExerciseModalVisibility,addExercise } from '../actions/actions';
 
 const mapStateToProps = (state) => ({
   currentWorkout: state.currentWorkout,
@@ -57,6 +57,7 @@ class _CurrentWorkout extends Component {
         </LinearGradient>
 
         <ExerciseModal
+            addExercise={this.props.addExercise}
             exercises={this.props.exercises}
             visible={this.props.exerciseModal}
             closeModal={() => this.props.setModalVisibility(false)}
@@ -92,4 +93,7 @@ const styles = StyleSheet.create({
 });
 
 
-export const CurrentWorkout = connect(mapStateToProps, mapActionsToProps)(_CurrentWorkout);
+export const CurrentWorkout = connect(
+  mapStateToProps, 
+  {setModalVisibility:setExerciseModalVisibility,addExercise:addExercise})
+(_CurrentWorkout);
